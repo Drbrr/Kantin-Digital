@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Kantin Digital</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-login">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1 class="login-title">Admin Panel</h1>
+            <p style="color: var(--text-light); margin-bottom: 2rem;">Masuk untuk mengakses panel administrasi</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Masukkan username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    Username atau password salah!
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg btn-full" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Masuk
+                </button>
+            </form>
+            
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="index.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // Reset error message
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            loginBtn.innerHTML = '<span class="loading">Memverifikasi...</span>';
+            loginBtn.disabled = true;
+            
+            // Simulate authentication delay
+            setTimeout(() => {
+                // Demo credentials - in production, this should be handled server-side
+                if (username === 'admin' && password === 'admin123') {
+                    // Set session
+                    sessionStorage.setItem('adminAuthenticated', 'true');
+                    sessionStorage.setItem('adminUsername', username);
+                    sessionStorage.setItem('loginTime', new Date().toISOString());
+                    
+                    // Redirect to admin panel
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    // Show error
+                    errorMessage.style.display = 'block';
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
+                    loginBtn.disabled = false;
+                    
+                    // Shake animation for error
+                    document.querySelector('.login-card').style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        document.querySelector('.login-card').style.animation = '';
+                    }, 500);
+                }
+            }, 1500);
+        });
+        
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

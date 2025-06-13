@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi - Kantin Digital</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="navbar-brand">
+                    <i class="fas fa-utensils"></i> Kantin Digital
+                </a>
+                <div class="navbar-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="#" id="show-history">Riwayat</a>
+                    <a href="admin-login.html" style="color: var(--text-light);">
+                        <i class="fas fa-shield-alt"></i> Admin
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container">
+            <div class="confirmation-container">
+                <div class="confirmation-card">
+                    <div class="confirmation-header">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h1>Pesanan Berhasil!</h1>
+                        <p>Terima kasih telah memesan di Kantin Digital</p>
+                        <div class="order-id-display">
+                            <i class="fas fa-receipt"></i>
+                            <span>Order ID: <strong id="order-id-display"></strong></span>
+                        </div>
+                    </div>
+
+                    <div class="confirmation-details">
+                        <h2>Detail Pesanan</h2>
+                        <div id="confirmation-items" class="confirmation-items">
+                            <!-- Order items will be inserted here by JavaScript -->
+                        </div>
+
+                        <div class="confirmation-summary">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="confirmation-subtotal">Rp 0</span>
+                            </div>
+                            <div class="summary-row" id="confirmation-discount-row" style="display: none;">
+                                <span>Diskon</span>
+                                <span id="confirmation-discount">-Rp 0</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span id="confirmation-total">Rp 0</span>
+                            </div>
+                        </div>
+
+                        <div class="confirmation-info-grid">
+                            <div class="confirmation-payment">
+                                <i class="fas fa-wallet"></i>
+                                <span>Metode Pembayaran:</span>
+                                <span id="confirmation-payment-method" class="payment-method-badge"></span>
+                            </div>
+
+                            <div class="confirmation-time">
+                                <i class="fas fa-clock"></i>
+                                <span>Waktu Pesanan:</span>
+                                <span id="confirmation-time"></span>
+                            </div>
+
+                            <div class="confirmation-status" id="payment-status-display">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Status Pembayaran:</span>
+                                <span id="payment-status" class="status-badge status-success">Berhasil</span>
+                            </div>
+                        </div>
+
+                        <!-- Improved QRIS Section -->
+                        <div id="qris-payment-info" class="qr-modal-content" style="display: none;">
+                            <div class="qr-modal-header">
+                                <h2><i class="fas fa-qrcode"></i> Pembayaran QRIS</h2>
+                                <span class="close-qr-payment" id="close-qr">&times;</span>
+                            </div>
+                            <div class="qr-modal-body">
+                                <div class="qr-payment-container">
+                                    <div class="qr-payment-info">
+                                        <h3 class="order-summary-title">Ringkasan Pesanan</h3>
+                                        <div class="qr-order-items" id="qr-order-items"></div>
+                                        <div class="qr-total-section">
+                                            <div class="qr-total-row">
+                                                <span>Subtotal</span>
+                                                <span id="qr-subtotal">Rp 0</span>
+                                            </div>
+                                            <div class="qr-total-row qr-final-total">
+                                                <span>Total Pembayaran</span>
+                                                <span id="qr-total">Rp 0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="qr-code-section">
+                                        <div class="qr-title">Scan QR Code untuk Pembayaran</div>
+                                        <div class="qr-code-wrapper">
+                                            <div class="qr-code-container" id="qr-image">
+
+                                                <!-- QR code image or canvas will go here -->
+                                            </div>
+                                            <div class="qr-code-info">
+                                                <p><i class="fas fa-store"></i> <span class="merchant-name">Kantin Digital</span></p>
+                                                <p><i class="fas fa-wallet"></i> <span class="payment-amount" id="qr-amount">Rp 0</span></p>
+                                                <p class="qr-instruction">Buka aplikasi e-wallet dan scan QR di atas</p>
+                                            </div>
+                                        </div>
+                                        <div class="qr-code-footer">
+                                            <p class="qr-note"><i class="fas fa-info-circle"></i> QR Code akan expired dalam <span id="qr-timer">5:00</span></p>
+                                            <div class="qr-actions">
+                                                <button id="refresh-qr" class="btn btn-outline"><i class="fas fa-sync-alt"></i> Refresh QR Code</button>
+                                                <button class="btn btn-success"><i class="fas fa-check-circle"></i> Pembayaran Berhasil</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="confirmation-actions">
+                        <button id="print-receipt" class="btn btn-outline">
+                            <i class="fas fa-print"></i> Cetak Struk
+                        </button>
+                        <button id="order-again" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Pesan Lagi
+                        </button>
+                        <a href="index.html" id="back-home" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Kembali ke Beranda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Kantin Digital. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" id="about-link">About Us</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="../js/confirmation.js"></script>
+</body>
+</html>
