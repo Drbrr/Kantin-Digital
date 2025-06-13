@@ -225,34 +225,34 @@ h6 {
 }
 
 .food-1 {
-  background-image: url(../img/Nasi\ Goreng.jpg);
+  background-image: url(../public/Nasi\ Goreng.jpg);
 }
 .food-2 {
-  background-image: url(../img/Mie\ Goreng.jpg);
+  background-image: url(../public/Mie\ Goreng.jpg);
 }
 .food-3 {
-  background-image: url(../img/Ayam\ Geprek.jpg);
+  background-image: url(../public/Ayam\ Geprek.jpg);
 }
 .food-4 {
-  background-image: url(../img/Sate\ Ayam.jpg);
+  background-image: url(../public/Sate\ Ayam.jpg);
 }
 .food-5 {
-  background-image: url(../img/Sate\ Sapi.jpg);
+  background-image: url(../public/Sate\ Sapi.jpg);
 }
 .drink-1 {
-  background-image: url(../img/Es\ Teh.jpg);
+  background-image: url(../public/Es\ Teh.jpg);
 }
 .drink-2 {
-  background-image: url(../img/Es\ Jeruk.jpg);
+  background-image: url(../public/Es\ Jeruk.jpg);
 }
 .drink-3 {
-  background-image: url(../img/Susu\ Vanilla.jpg);
+  background-image: url(../public/Susu\ Vanilla.jpg);
 }
 .drink-4 {
-  background-image: url(../img/Susu\ Coklat.jpg);
+  background-image: url(../public/Susu\ Coklat.jpg);
 }
 .drink-5 {
-  background-image: url(../img/Air\ Mineral.jpg);
+  background-image: url(../public/Air\ Mineral.jpg);
 }
 
 .menu-card-content {
