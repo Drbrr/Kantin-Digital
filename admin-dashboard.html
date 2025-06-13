@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Kantin Digital</title>
+    <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="navbar-brand">
+                    <i class="fas fa-utensils"></i> Kantin Digital
+                </a>
+                <div class="navbar-links">
+                    <span style="color: var(--text-light);">
+                        <i class="fas fa-user-shield"></i> Admin Panel
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container admin-dashboard">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Dashboard Admin</h1>
+                <p class="dashboard-subtitle">Kelola sistem kantin digital dengan mudah</p>
+            </div>
+
+            <!-- Dashboard Overview -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon inventory">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Total Stok</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number" id="totalStock">0</div>
+                        <div class="stat-label">Item tersedia</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon products">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Total Produk</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number" id="totalProducts">0</div>
+                        <div class="stat-label">Menu aktif</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon reports">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Penjualan</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number" id="totalSales">0</div>
+                        <div class="stat-label">Pesanan hari ini</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon settings">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Pendapatan</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number" id="totalRevenue">Rp 0</div>
+                        <div class="stat-label">Total pendapatan</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="showTab('inventory')">
+                    <i class="fas fa-boxes"></i> Manajemen Stok
+                </button>
+                <button class="admin-tab" onclick="showTab('products')">
+                    <i class="fas fa-plus-circle"></i> Kelola Produk
+                </button>
+                <button class="admin-tab" onclick="showTab('reports')">
+                    <i class="fas fa-chart-bar"></i> Laporan
+                </button>
+                <button class="admin-tab" onclick="showTab('settings')">
+                    <i class="fas fa-cog"></i> Pengaturan
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="admin-content">
+                <!-- Inventory Management Tab -->
+                <div id="inventory-tab" class="tab-content active">
+                    <div class="content-header">
+                        <h2 class="content-title">Manajemen Stok</h2>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="adminDashboard.resetAllStock()">
+                                <i class="fas fa-sync-alt"></i> Reset Semua Stok
+                            </button>
+                            <button class="btn btn-primary" onclick="adminDashboard.saveStockChanges()">
+                                <i class="fas fa-save"></i> Simpan Perubahan
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="data-table" id="stockTable">
+                        <thead>
+                            <tr>
+                                <th>Gambar</th>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Stok Saat Ini</th>
+                                <th>Stok Minimum</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stockTableBody">
+                            <!-- Stock data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Product Management Tab -->
+                <div id="products-tab" class="tab-content">
+                    <div class="content-header">
+                        <h2 class="content-title">Kelola Produk</h2>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="adminDashboard.showAddProductModal()">
+                                <i class="fas fa-plus"></i> Tambah Produk
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="data-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Gambar</th>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Status</th>
+                                <th>Dibuat</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Products data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Reports Tab -->
+                <div id="reports-tab" class="tab-content">
+                    <div class="content-header">
+                        <h2 class="content-title">Laporan Penjualan</h2>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="adminDashboard.exportReport()">
+                                <i class="fas fa-file-export"></i> Export CSV
+                            </button>
+                            <button class="btn btn-primary" onclick="adminDashboard.refreshReports()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid" style="margin-bottom: 2rem;">
+                        <div class="dashboard-card">
+                            <h4>Penjualan Hari Ini</h4>
+                            <div class="stat-number" id="todaySales">0</div>
+                            <div class="stat-label">Pesanan</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Pendapatan Hari Ini</h4>
+                            <div class="stat-number" id="todayRevenue">Rp 0</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Produk Terlaris</h4>
+                            <div class="stat-number" id="topProduct">-</div>
+                            <div class="stat-label">Item</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Stok Menipis</h4>
+                            <div class="stat-number" id="lowStockCount">0</div>
+                            <div class="stat-label">Item</div>
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
+                                <th>Pembayaran</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportsTableBody">
+                            <!-- Reports data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="tab-content">
+                    <div class="content-header">
+                        <h2 class="content-title">Pengaturan Sistem</h2>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h4>Backup Data</h4>
+                            <p>Backup semua data sistem</p>
+                            <button class="btn btn-outline" onclick="adminDashboard.backupData()">
+                                <i class="fas fa-download"></i> Backup Sekarang
+                            </button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Reset Data</h4>
+                            <p>Reset semua data ke kondisi awal</p>
+                            <button class="btn btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);" onclick="adminDashboard.resetAllData()">
+                                <i class="fas fa-exclamation-triangle"></i> Reset Data
+                            </button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Ubah Password</h4>
+                            <p>Ubah password admin</p>
+                            <button class="btn btn-primary" onclick="adminDashboard.showChangePasswordModal()">
+                                <i class="fas fa-key"></i> Ubah Password
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="productModalTitle">Tambah Produk Baru</h3>
+                <button class="modal-close" onclick="adminDashboard.closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="productForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nama Produk</label>
+                        <input type="text" id="productName" class="form-input" placeholder="Masukkan nama produk" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Kategori</label>
+                        <select id="productCategory" class="form-input" required>
+                            <option value="">Pilih kategori</option>
+                            <option value="food">Makanan</option>
+                            <option value="drink">Minuman</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Harga (Rp)</label>
+                        <input type="number" id="productPrice" class="form-input" placeholder="0" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stok Awal</label>
+                        <input type="number" id="productStock" class="form-input" placeholder="0" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Deskripsi</label>
+                    <textarea id="productDescription" class="form-input" rows="3" placeholder="Masukkan deskripsi produk" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Gambar Produk</label>
+                    <div class="file-upload">
+                        <input type="file" id="productImage" accept="image/*" onchange="previewImage(this)">
+                        <label for="productImage" class="file-upload-label">
+                            <div>
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Klik untuk upload gambar</p>
+                                <small>Format: JPG, PNG (Max: 2MB)</small>
+                            </div>
+                        </label>
+                    </div>
+                    <img id="imagePreview" class="image-preview" style="display: none;">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="adminDashboard.closeProductModal()">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="saveProductBtn">
+                        <i class="fas fa-save"></i> Simpan Produk
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Stock Update Modal -->
+    <div class="modal-overlay" id="stockModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Update Stok</h3>
+                <button class="modal-close" onclick="adminDashboard.closeStockModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="stockForm">
+                <div class="form-group">
+                    <label class="form-label">Nama Produk</label>
+                    <input type="text" id="stockProductName" class="form-input" readonly>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Stok Saat Ini</label>
+                        <input type="number" id="currentStock" class="form-input" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tambah Stok</label>
+                        <input type="number" id="addStock" class="form-input" placeholder="0" min="0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Catatan</label>
+                    <textarea id="stockNote" class="form-input" rows="2" placeholder="Catatan resupply (opsional)"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="adminDashboard.closeStockModal()">Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Update Stok
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../components/admin-dashboard.js"></script>
+</body>
+</html>

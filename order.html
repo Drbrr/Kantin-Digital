@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pesan - Kantin Digital</title>
+    <link rel="stylesheet" href="../style/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="navbar-brand">
+                    <i class="fas fa-utensils"></i> Kantin Digital
+                </a>
+                <div class="navbar-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="#" id="show-history">Riwayat</a>
+                    <a href="admin-login.html" style="color: var(--text-light);">
+                        <i class="fas fa-shield-alt"></i> Admin
+                    </a>
+                    <a href="#" id="cart-icon" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container">
+            <h1 class="page-title">Menu Pesanan</h1>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Cari menu..." />
+                    <button id="clear-search" class="clear-search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="order-grid">
+                <!-- Menu Selection Section -->
+                <div class="menu-section">
+                    <div class="tabs">
+                        <button class="tab-btn active" id="food-tab-btn" data-tab="0">
+                            <i class="fas fa-hamburger"></i> Makanan
+                        </button>
+                        <button class="tab-btn" id="drink-tab-btn" data-tab="1">
+                            <i class="fas fa-coffee"></i> Minuman
+                        </button>
+                        <button class="tab-btn" id="payment-tab-btn" data-tab="2">
+                            <i class="fas fa-wallet"></i> Pembayaran
+                        </button>
+                    </div>
+
+                    <!-- Food Menu Tab -->
+                    <div class="tab-content active" id="food-tab">
+                        <div class="menu-items" id="food-items">
+                            <div class="menu-item" data-id="1" data-name="Nasi Goreng" data-price="15000" data-category="food">
+                                <div class="menu-item-image food-1"></div>
+                                <div class="menu-item-details">
+                                    <h3>Nasi Goreng</h3>
+                                    <p class="menu-item-price">Rp 15.000</p>
+                                    <p class="menu-item-description">Nasi goreng spesial dengan telur dan ayam</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="2" data-name="Mie Goreng" data-price="12000" data-category="food">
+                                <div class="menu-item-image food-2"></div>
+                                <div class="menu-item-details">
+                                    <h3>Mie Goreng</h3>
+                                    <p class="menu-item-price">Rp 12.000</p>
+                                    <p class="menu-item-description">Mie goreng dengan telur dan sayuran</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="3" data-name="Ayam Geprek" data-price="10000" data-category="food">
+                                <div class="menu-item-image food-3"></div>
+                                <div class="menu-item-details">
+                                    <h3>Ayam Geprek</h3>
+                                    <p class="menu-item-price">Rp 10.000</p>
+                                    <p class="menu-item-description">Ayam geprek pedas dengan sambal spesial</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="4" data-name="Sate Ayam" data-price="20000" data-category="food">
+                                <div class="menu-item-image food-4"></div>
+                                <div class="menu-item-details">
+                                    <h3>Sate Ayam</h3>
+                                    <p class="menu-item-price">Rp 20.000</p>
+                                    <p class="menu-item-description">Sate ayam dengan bumbu kacang</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="5" data-name="Sate Sapi" data-price="22000" data-category="food">
+                                <div class="menu-item-image food-5"></div>
+                                <div class="menu-item-details">
+                                    <h3>Sate Sapi</h3>
+                                    <p class="menu-item-price">Rp 22.000</p>
+                                    <p class="menu-item-description">Sate sapi dengan bumbu kacang spesial</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drink Menu Tab -->
+                    <div class="tab-content" id="drink-tab">
+                        <div class="menu-items" id="drink-items">
+                            <div class="menu-item" data-id="1" data-name="Es Teh" data-price="5000" data-category="drink">
+                                <div class="menu-item-image drink-1"></div>
+                                <div class="menu-item-details">
+                                    <h3>Es Teh</h3>
+                                    <p class="menu-item-price">Rp 5.000</p>
+                                    <p class="menu-item-description">Es teh manis segar</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="2" data-name="Es Jeruk" data-price="6000" data-category="drink">
+                                <div class="menu-item-image drink-2"></div>
+                                <div class="menu-item-details">
+                                    <h3>Es Jeruk</h3>
+                                    <p class="menu-item-price">Rp 6.000</p>
+                                    <p class="menu-item-description">Es jeruk segar dengan jeruk pilihan</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="3" data-name="Susu Coklat" data-price="8000" data-category="drink">
+                                <div class="menu-item-image drink-3"></div>
+                                <div class="menu-item-details">
+                                    <h3>Susu Coklat</h3>
+                                    <p class="menu-item-price">Rp 8.000</p>
+                                    <p class="menu-item-description">Susu coklat dingin</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="4" data-name="Susu Vanilla" data-price="8000" data-category="drink">
+                                <div class="menu-item-image drink-4"></div>
+                                <div class="menu-item-details">
+                                    <h3>Susu Vanilla</h3>
+                                    <p class="menu-item-price">Rp 8.000</p>
+                                    <p class="menu-item-description">Susu vanilla dingin</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                            <div class="menu-item" data-id="5" data-name="Air Mineral" data-price="4000" data-category="drink">
+                                <div class="menu-item-image drink-5"></div>
+                                <div class="menu-item-details">
+                                    <h3>Air Mineral</h3>
+                                    <p class="menu-item-price">Rp 4.000</p>
+                                    <p class="menu-item-description">Air mineral segar</p>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus">-</button>
+                                        <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                                        <button class="quantity-btn plus">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary add-item-btn">
+                                    <i class="fas fa-plus"></i> Tambah
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Tab -->
+                    <div class="tab-content" id="payment-tab">
+                        <div class="payment-methods">
+                            <h3 class="section-title">Pilih Metode Pembayaran</h3>
+
+                            <div class="payment-option" data-payment="QRIS">
+                                <input type="radio" id="qris" name="payment" value="QRIS" />
+                                <label for="qris">
+                                    <i class="fas fa-qrcode"></i>
+                                    <span>QRIS</span>
+                                    <p class="payment-description">Bayar dengan scan QR code</p>
+                                </label>
+                            </div>
+
+                            <div class="payment-option" data-payment="CASH">
+                                <input type="radio" id="cash" name="payment" value="CASH" />
+                                <label for="cash">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>CASH</span>
+                                    <p class="payment-description">Bayar dengan uang tunai</p>
+                                </label>
+                            </div>
+
+                            <div class="discount-section">
+                                <h3 class="section-title">Kode Promo</h3>
+                                <div class="discount-input">
+                                    <input type="text" id="discount-code" placeholder="Masukkan kode promo" />
+                                    <button id="apply-discount" class="btn btn-outline">Terapkan</button>
+                                </div>
+                                <p id="discount-message" class="discount-message"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-navigation">
+                        <button id="prev-tab" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i> Sebelumnya
+                        </button>
+                        <button id="next-tab" class="btn btn-primary">
+                            Selanjutnya <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order Summary Section -->
+                <div class="order-summary" id="order-summary">
+                    <div class="summary-header">
+                        <h2>Ringkasan Pesanan</h2>
+                        <button id="clear-cart" class="btn btn-text">
+                            <i class="fas fa-trash"></i> Kosongkan
+                        </button>
+                    </div>
+
+                    <div id="order-items" class="order-items">
+                        <p class="empty-order">Belum Ada Pesanan</p>
+                    </div>
+
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">Rp 0</span>
+                        </div>
+                        <div class="summary-row" id="discount-row" style="display: none;">
+                            <span>Diskon</span>
+                            <span id="discount-amount">-Rp 0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total-price">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-info">
+                        <i class="fas fa-wallet"></i>
+                        <span>Metode Pembayaran:</span>
+                        <span id="selected-payment">Belum Memilih</span>
+                    </div>
+
+                    <button id="confirm-order" class="btn btn-primary btn-lg btn-full">
+                        <i class="fas fa-check-circle"></i> Konfirmasi Pesanan
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Kantin Digital.</p>
+                <div class="footer-links">
+                    <a href="#" id="about-link">About Us</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mobile Cart Button -->
+    <button id="mobile-cart-btn" class="mobile-cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="mobile-cart-count">0</span>
+    </button>
+
+    <!-- Order History Modal -->
+    <div id="history-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Riwayat Pesanan</h2>
+                <span class="close" id="close-history">&times;</span>
+            </div>
+            <div class="modal-body" id="history-list">
+                <!-- Order history will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Konfirmasi Pesanan</h2>
+                <span class="close-confirm" id="close-confirm">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin mengonfirmasi pesanan ini?</p>
+                <div class="modal-buttons">
+                    <button id="cancel-confirm" class="btn btn-outline">Batal</button>
+                    <button id="proceed-confirm" class="btn btn-primary">Ya, Konfirmasi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear Cart Modal -->
+    <div id="clear-cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Kosongkan Keranjang</h2>
+                <span class="close-clear-cart" id="close-clear-cart">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin mengosongkan keranjang?</p>
+                <div class="modal-buttons">
+                    <button id="cancel-clear" class="btn btn-outline">Batal</button>
+                    <button id="proceed-clear" class="btn btn-primary">Ya, Kosongkan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>About Us</h2>
+                <span class="close-about" id="close-about">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="about-content">
+                    <div class="about-logo">
+                        <i class="fas fa-utensils"></i> Kantin Digital
+                    </div>
+                    <p>Kantin Digital adalah sistem pemesanan makanan dan minuman online yang dirancang untuk memudahkan proses pemesanan di kantin. Aplikasi ini memungkinkan pengguna untuk memesan makanan dan minuman dengan cepat dan mudah tanpa perlu mengantri.</p>
+
+                    <h3>Fitur Utama</h3>
+                    <ul>
+                        <li>Pemesanan makanan dan minuman secara online</li>
+                        <li>Pembayaran dengan QRIS atau tunai</li>
+                        <li>Riwayat pesanan untuk pemesanan ulang dengan cepat</li>
+                        <li>Kode promo untuk diskon</li>
+                        <li>Cetak struk pesanan</li>
+                    </ul>
+
+                    <h3>Cara Penggunaan</h3>
+                    <ol>
+                        <li>Pilih menu makanan atau minuman yang diinginkan</li>
+                        <li>Tentukan jumlah yang ingin dipesan</li>
+                        <li>Klik tombol "Tambah" untuk menambahkan ke keranjang</li>
+                        <li>Pilih metode pembayaran yang diinginkan</li>
+                        <li>Klik "Konfirmasi Pesanan" untuk menyelesaikan pemesanan</li>
+                    </ol>
+
+                    <h3>Tentang Pengembang</h3>
+                    <p>Aplikasi Kantin Digital ini dikembangkan sebagai solusi untuk mempercepat proses pemesanan makanan dan minuman di kantin. Kami berkomitmen untuk terus mengembangkan aplikasi ini dengan menambahkan fitur-fitur baru yang bermanfaat bagi pengguna.</p>
+
+                    <h3>Hubungi Kami</h3>
+                    <p>Email: support@kantindigital.com</p>
+                    <p>Telepon: (021) 1234-5678</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Payment Modal -->
+    <div id="qr-payment-modal" class="modal">
+        <div class="modal-content qr-modal-content">
+            <div class="modal-header qr-modal-header">
+                <h2><i class="fas fa-qrcode"></i> Pembayaran QRIS</h2>
+                <span class="close-qr-payment" id="close-qr-payment">&times;</span>
+            </div>
+            <div class="modal-body qr-modal-body">
+                <div class="qr-payment-container">
+                    <div class="qr-payment-info">
+                        <div class="order-summary-qr">
+                            <h3>Ringkasan Pesanan</h3>
+                            <div id="qr-order-items" class="qr-order-items">
+                                <!-- Order items will be populated here -->
+                            </div>
+                            <div class="qr-total-section">
+                                <div class="qr-total-row">
+                                    <span>Subtotal:</span>
+                                    <span id="qr-subtotal">Rp 0</span>
+                                </div>
+                                <div class="qr-total-row" id="qr-discount-row" style="display: none;">
+                                    <span>Diskon:</span>
+                                    <span id="qr-discount-amount">-Rp 0</span>
+                                </div>
+                                <div class="qr-total-row qr-final-total">
+                                    <span>Total Pembayaran:</span>
+                                    <span id="qr-final-amount">Rp 0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-code-section">
+                        <h4 class="qr-title">
+                            <i class="fas fa-qrcode"></i>
+                            Scan QR Code untuk Pembayaran
+                        </h4>
+                        <div class="qr-code-wrapper">
+                            <div id="qr-code-container" class="qr-code-container">
+                                <div class="qr-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Generating QR Code...</p>
+                                </div>
+                            </div>
+                            <div class="qr-code-info">
+                                <p class="merchant-name">
+                                    <i class="fas fa-store"></i>
+                                    Kantin Digital
+                                </p>
+                                <p class="payment-amount">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    Total: <span id="qr-amount">Rp 0</span>
+                                </p>
+                                <p class="qr-instruction">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    Buka aplikasi e-wallet dan scan QR code di atas
+                                </p>
+                            </div>
+                        </div>
+                        <div class="qr-code-footer">
+                            <p class="qr-note">
+                                <i class="fas fa-info-circle"></i>
+                                QR Code akan expired dalam <span id="qr-timer">5:00</span>
+                            </p>
+                            <div class="qr-actions">
+                                <button id="refresh-qr" class="btn btn-outline btn-sm">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Refresh QR Code
+                                </button>
+                                <button id="payment-success" class="btn btn-success btn-sm">
+                                    <i class="fas fa-check"></i>
+                                    Pembayaran Berhasil
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Load QR Code Library with multiple CDN fallbacks -->
+    <script>
+        // QR Code Library Loading with fallbacks
+        const QR_LIBRARIES = [
+            'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js',
+            'https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'
+        ];
+
+        let qrLibraryLoaded = false;
+        let currentLibraryIndex = 0;
+
+        function loadQRLibrary(index = 0) {
+            return new Promise((resolve, reject) => {
+                if (window.QRCode || qrLibraryLoaded) {
+                    qrLibraryLoaded = true;
+                    resolve();
+                    return;
+                }
+
+                if (index >= QR_LIBRARIES.length) {
+                    console.warn('All QR libraries failed to load, using fallback');
+                    qrLibraryLoaded = false;
+                    resolve(); // Still resolve to continue with fallback
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = QR_LIBRARIES[index];
+                script.async = true;
+                
+                script.onload = () => {
+                    console.log(`QR library loaded from: ${QR_LIBRARIES[index]}`);
+                    qrLibraryLoaded = true;
+                    resolve();
+                };
+                
+                script.onerror = () => {
+                    console.warn(`Failed to load QR library from: ${QR_LIBRARIES[index]}`);
+                    // Try next library
+                    loadQRLibrary(index + 1).then(resolve).catch(reject);
+                };
+                
+                document.head.appendChild(script);
+            });
+        }
+
+        // Initialize app after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load QR library first, then initialize the app
+            loadQRLibrary().then(() => {
+                // Initialize the main application
+                initializeApp();
+            }).catch(error => {
+                console.error('Error loading QR library:', error);
+                // Initialize app anyway with fallback QR
+                initializeApp();
+            });
+        });
+
+        // Global app state
+        window.AppState = {
+            qrLibraryLoaded: false,
+            currentTab: 0
+        };
+    </script>
+    <script src="../components/order.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</body>
+</html>
